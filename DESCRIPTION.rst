@@ -9,6 +9,12 @@ Source code is also available at: https://github.com/snowflakedb/snowflake-conne
 Release Notes
 -------------------------------------------------------------------------------
 
+
+- v2.3.7(November 28,2020)
+
+   - Description1
+   - Description2
+
 - v2.3.6(November 16,2020)
 
    - Fixed a bug that was preventing the connector from working on Windows with Python 3.8.
