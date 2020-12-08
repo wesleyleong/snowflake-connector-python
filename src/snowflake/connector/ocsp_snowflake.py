@@ -23,7 +23,6 @@ from threading import Lock, RLock
 from time import gmtime, strftime
 
 import jwt
-import requests as generic_requests
 
 from snowflake.connector.compat import OK, urlsplit
 from snowflake.connector.constants import HTTP_HEADER_USER_AGENT
@@ -58,6 +57,8 @@ from snowflake.connector.ssd_internal_keys import (
 )
 from snowflake.connector.telemetry_oob import TelemetryService
 from snowflake.connector.time_util import DecorrelateJitterBackoff
+
+from .vendored import requests as generic_requests
 
 logger = getLogger(__name__)
 
@@ -1265,7 +1266,7 @@ class SnowflakeOCSP(object):
                     self.read_cert_bundle(ca_bundle)
                 else:
                     import sys
-                    from requests import certs
+                    from .vendored.requests import certs
                     if hasattr(certs, '__file__') and \
                             path.exists(certs.__file__) and \
                             path.exists(path.join(

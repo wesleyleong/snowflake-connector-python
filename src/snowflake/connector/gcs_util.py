@@ -10,11 +10,10 @@ from collections import namedtuple
 from logging import getLogger
 from typing import Any, Dict
 
-import requests
-
 from .compat import quote
 from .constants import HTTP_HEADER_CONTENT_ENCODING, SHA256_DIGEST, FileHeader, ResultStatus
 from .encryption_util import EncryptionMetadata
+from .vendored import requests
 
 GCS_METADATA_PREFIX = 'x-goog-meta-'
 GCS_METADATA_SFC_DIGEST = GCS_METADATA_PREFIX + 'sfc-digest'

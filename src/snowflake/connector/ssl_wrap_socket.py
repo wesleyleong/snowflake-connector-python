@@ -19,13 +19,13 @@ from socket import socket
 
 import certifi
 import OpenSSL.SSL
-import requests.packages.urllib3.connection as connection_
-import requests.packages.urllib3.util.ssl_ as ssl_
 from urllib3.contrib.pyopenssl import PyOpenSSLContext
 
 from .constants import OCSPMode
 from .errorcode import ER_OCSP_RESPONSE_CERT_STATUS_REVOKED
 from .errors import OperationalError
+from .vendored.urllib3 import connection as connection_
+from .vendored.urllib3.util import ssl_ as ssl_
 
 FEATURE_OCSP_MODE = OCSPMode.FAIL_OPEN
 
@@ -39,6 +39,7 @@ log = logging.getLogger(__name__)
 
 def inject_into_urllib3():
     """Monkey-patch urllib3 with PyOpenSSL-backed SSL-support and OCSP."""
+    # TODO replace this with the code in vendoired
     log.debug('Injecting ssl_wrap_socket_with_ocsp')
     connection_.ssl_wrap_socket = ssl_wrap_socket_with_ocsp
 
